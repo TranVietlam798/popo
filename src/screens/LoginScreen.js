@@ -19,12 +19,13 @@ export default function LoginScreen() {
   const navigation = useNavigation();
 
   const handleLogin = () => {
+    navigation.navigate(('Main'));
   }
 
 
   return (
     <SafeAreaView
-      style={{ backgroundColor: "white", alignItems: "center", marginTop: 50, height: '100%' }}
+      style={{ alignItems: "center", marginTop: 50, height: '100%' }}
     >
       <View>
         <Image
