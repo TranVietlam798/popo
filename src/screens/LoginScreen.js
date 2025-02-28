@@ -1,29 +1,30 @@
 import {
-    StyleSheet,
-    Text,
-    View,
-    SafeAreaView,
-    Image,
-    KeyboardAvoidingView,
-    TextInput,
-    Pressable,
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Image,
+  KeyboardAvoidingView,
+  TextInput,
+  Pressable,
 } from 'react-native'
 import React, { useState } from 'react'
-import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
-import  AntDesign  from "react-native-vector-icons/AntDesign";
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import AntDesign from "react-native-vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 
 export default function LoginScreen() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigation = useNavigation();
 
-    const handleLogin = () => {
-    }
+  const handleLogin = () => {
+  }
 
 
-    return (
-        <SafeAreaView
-      style={{  backgroundColor: "white", alignItems: "center",marginTop:50 }}
+  return (
+    <SafeAreaView
+      style={{ backgroundColor: "white", alignItems: "center", marginTop: 50, height: '100%' }}
     >
       <View>
         <Image
@@ -165,7 +166,7 @@ export default function LoginScreen() {
         </Pressable>
       </KeyboardAvoidingView>
     </SafeAreaView>
-    )
+  )
 }
 
 const styles = StyleSheet.create({})
