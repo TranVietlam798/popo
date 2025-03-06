@@ -1,173 +1,275 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  Image,
-  KeyboardAvoidingView,
-  TextInput,
-  Pressable,
-} from 'react-native'
+import { TouchableOpacity, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function LoginScreen() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigation = useNavigation();
+const LoginScreen = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('')
 
-  const handleLogin = () => {
-    navigation.navigate(('Main'));
+
+
+  const navigation = useNavigation()
+
+  const handleLogin = async () => {
+    const user = {
+      email: email,
+      password: password
+    }
+    // console.log(user);
+
+
+    // axios.post('http://localhost:8000/login', user).then((response) => {
+    //   console.log(response);
+    //   const token = response.data.token;
+    //   AsyncStorage.setItem("authenToken", token)
+
+      navigation.replace('Main')
+
+    // }
+    // ).catch((err) => {
+    //   Alert.alert("Login Error", "Invalid Email");
+    //   console.log(err);
+
+    // }
+
+    // )
   }
 
-
   return (
-    <SafeAreaView
-      style={{ alignItems: "center", marginTop: 50, height: '100%' }}
-    >
-      <View>
-        <Image
-          style={{ width: 150, height: 100 }}
-          source={{
-            uri: "https://assets.stickpng.com/thumbs/6160562276000b00045a7d97.png",
-          }}
-        />
+    <View style={{
+      flex: 1,
+      backgroundColor: 'white'
+    }}>
+      <View style={{
+        alignItems: 'center',
+        marginTop: 100
+      }}>
+
+        <Text style={{
+          color: 'black',
+          fontSize: 30,
+          fontWeight: 'bold',
+          alignItems: 'center',
+
+        }} >Welcome to POPO</Text>
+        <Text style={{
+          width: '70%',
+          color: 'black',
+          fontSize: 18,
+          alignItems: 'center',
+          textAlign: "center",
+          marginTop: '8',
+
+        }} >Login or Sign up to access your account</Text>
+      </View>
+      <View style={{
+        // flex: 1,
+        flexDirection: "row",
+        height: 50,
+        marginTop: '50'
+      }}>
+        <TouchableOpacity style={{
+          width: '50%',
+          backgroundColor: '#00172d0d',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderTopRightRadius: 10
+
+        }}
+
+        >
+
+          <Text style={{
+            color: 'black',
+            fontSize: 22,
+            alignItems: 'center',
+            textAlign: 'center',
+            width: '50%',
+          }} >Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={{
+          width: '50%',
+          // backgroundColor: '#00172d0d',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+
+          <Text style={{
+            width: '70%',
+            color: 'black',
+            fontSize: 22,
+            textAlign: "center",
+            width: '50%',
+
+          }} >Sign up</Text>
+        </TouchableOpacity>
       </View>
 
-      <KeyboardAvoidingView>
-        <View style={{ alignItems: "center" }}>
-          <Text
+      <View style={{
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: '#00172d0d',
+
+      }}>
+        <View style={{
+          flexDirection: 'row',
+          backgroundColor: 'white',
+          height: 60,
+          alignItems: 'center',
+          marginTop: 20,
+          width: '90%',
+          paddingHorizontal: '8',
+          borderRadius: 10
+
+        }}>
+          <AntDesign name="mail" size={24} color='black' />
+          <TextInput
             style={{
-              fontSize: 17,
-              fontWeight: "bold",
-              marginTop: 12,
-              color: "#041E42",
+              width: "70%",
+              marginHorizontal: 8,
+              fontSize: 20
             }}
-          >
-            Login In to your Account
-          </Text>
+            value={email}
+            placeholder='Email Address'
+            onChangeText={(email) => setEmail(email)}
+          />
+        </View>
+        <View style={{
+          flexDirection: 'row',
+          backgroundColor: 'white',
+          height: 60,
+          alignItems: 'center',
+          marginTop: 20,
+          width: '90%',
+          paddingHorizontal: '8',
+          borderRadius: 10
+        }}>
+          <AntDesign name="lock1" size={24} color='black' />
+          <TextInput
+            secureTextEntry={true}
+            style={{
+              width: "70%",
+              marginHorizontal: 8,
+              fontSize: 20
+            }}
+            placeholder='Password'
+            onChangeText={(password) => setPassword(password)}
+            value={password}
+          />
         </View>
 
-        <View style={{ marginTop: 70 }}>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              gap: 5,
-              backgroundColor: "#D0D0D0",
-              paddingVertical: 5,
-              borderRadius: 5,
-              marginTop: 30,
-            }}
-          >
-            <MaterialIcons
-              style={{ marginLeft: 8 }}
-              name="email"
-              size={24}
-              color="gray"
-            />
 
-            <TextInput
-              value={email}
-              onChangeText={(text) => setEmail(text)}
-              style={{
-                color: "gray",
-                marginVertical: 10,
-                width: 300,
-                fontSize: email ? 16 : 16,
-              }}
-              placeholder="enter your Email"
-            />
-          </View>
-        </View>
 
-        <View style={{ marginTop: 10 }}>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              gap: 5,
-              backgroundColor: "#D0D0D0",
-              paddingVertical: 5,
-              borderRadius: 5,
-              marginTop: 30,
-            }}
-          >
-            <AntDesign
-              name="lock1"
-              size={24}
-              color="gray"
-              style={{ marginLeft: 8 }}
-            />
+        <TouchableOpacity style={{
+          width: '90%',
+          marginTop: 20,
+        }}>
+          <Text style={{
+            fontSize: 16,
+          }}>Forgot password?</Text>
+        </TouchableOpacity>
+        <Text style={{
+          fontSize: 16,
+          marginTop: 36,
+        }}>Or continue with email</Text>
 
-            <TextInput
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-              secureTextEntry={true}
-              style={{
-                color: "gray",
-                marginVertical: 10,
-                width: 300,
-                fontSize: password ? 16 : 16,
-              }}
-              placeholder="enter your Password"
-            />
-          </View>
-        </View>
-
-        <View
+        <TouchableOpacity
           style={{
-            marginTop: 12,
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
+            flexDirection: 'row',
+            height: 100,
+            backgroundColor: 'white',
+            height: 60,
+            alignItems: 'center',
+            marginTop: 36,
+            width: '90%',
+            paddingHorizontal: '8',
+            borderRadius: 10,
+            justifyContent: 'center',
+          }}>
+
+          <AntDesign name="google" size={24} color='blue' />
+          <Text style={{
+            color: 'black',
+            fontSize: 22,
+            alignItems: 'center',
+            textAlign: 'center',
+            // width: '50%',
+
+            marginHorizontal: '8',
+          }} >Login with Google</Text>
+
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{
+            flexDirection: 'row',
+            height: 100,
+            backgroundColor: 'white',
+            height: 60,
+            alignItems: 'center',
+            marginTop: 16,
+            width: '90%',
+            paddingHorizontal: '8',
+            borderRadius: 10,
+            justifyContent: 'center'
+          }}>
+
+          <AntDesign name="apple1" size={24} color='black' />
+          <Text style={{
+            color: 'black',
+            fontSize: 22,
+            alignItems: 'center',
+            textAlign: 'center',
+            // width: '50%',
+
+            marginHorizontal: '8',
+          }} >Login with Apple</Text>
+
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{
+            flexDirection: 'row',
+            backgroundColor: 'white',
+            height: 60,
+            alignItems: 'center',
+            marginTop: 36,
+            width: '90%',
+            paddingHorizontal: '8',
+            borderRadius: 10,
+            justifyContent: 'center',
+            backgroundColor: '#0098FF'
+
           }}
-        >
-          <Text>Keep me logged in</Text>
-
-          <Text style={{ color: "#007FFF", fontWeight: "500" }}>
-            Forgot Password
-          </Text>
-        </View>
-
-        <View style={{ marginTop: 80 }} />
-
-        <Pressable
           onPress={handleLogin}
-          style={{
-            width: 200,
-            backgroundColor: "#FEBE10",
-            borderRadius: 6,
-            marginLeft: "auto",
-            marginRight: "auto",
-            padding: 15,
-          }}
         >
-          <Text
-            style={{
-              textAlign: "center",
-              color: "white",
-              fontSize: 16,
-              fontWeight: "bold",
-            }}
-          >
-            Login
-          </Text>
-        </Pressable>
 
-        <Pressable
-          onPress={() => navigation.navigate("Register")}
-          style={{ marginTop: 15 }}
-        >
-          <Text style={{ textAlign: "center", color: "gray", fontSize: 16 }}>
-            Don't have an account? Sign Up
-          </Text>
-        </Pressable>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+          <Text style={{
+            color: 'black',
+            fontSize: 25,
+            alignItems: 'center',
+            textAlign: 'center',
+            // width: '50%',
+
+            marginHorizontal: '8',
+            color: 'white'
+          }} >Login</Text>
+
+        </TouchableOpacity>
+
+
+
+
+      </View>
+
+    </View >
   )
 }
+
+export default LoginScreen
 
 const styles = StyleSheet.create({})
