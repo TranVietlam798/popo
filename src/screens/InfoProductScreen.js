@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const Sizes = [39, 40, 41, 42, 43];
 
-const InfoProduct = () => {
+const InfoProductScreen = () => {
   const navigator = useNavigation()
   return (
     <SafeAreaView style={{ backgroundColor: 'white', flex: 1 }}>
@@ -162,6 +162,6 @@ const InfoProduct = () => {
   )
 }
 
-export default InfoProduct
+export default InfoProductScreen
 
 const styles = StyleSheet.create({})

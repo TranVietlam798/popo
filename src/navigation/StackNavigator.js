@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import MainScreen from '../screens/MainScreen'
-import InfoProduct from '../screens/InfoProduct'
+import InfoProductScreen from '../screens/InfoProductScreen'
 import CartScreen from '../screens/CartScreen'
 
 const StackNavigator = () => {
@@ -27,11 +27,11 @@ const StackNavigator = () => {
                 <stack.Screen
                     name='Main'
                     component={MainScreen}
-                    options={{headerShown: false}}
+                    options={{ headerShown: false }}
                 />
                 <stack.Screen
                     name='Info'
-                    component={InfoProduct}
+                    component={InfoProductScreen}
                     options={{ headerShown: false }}
                 />
                 <stack.Screen

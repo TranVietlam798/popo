@@ -22,21 +22,21 @@ const LoginScreen = () => {
     // console.log(user);
 
 
-    // axios.post('http://localhost:8000/login', user).then((response) => {
-    //   console.log(response);
-    //   const token = response.data.token;
-    //   AsyncStorage.setItem("authenToken", token)
+    axios.post('http://localhost:8000/login', user).then((response) => {
+      console.log(response);
+      const token = response.data.token;
+      AsyncStorage.setItem("authenToken", token)
 
       navigation.replace('Main')
 
-    // }
-    // ).catch((err) => {
-    //   Alert.alert("Login Error", "Invalid Email");
-    //   console.log(err);
+    }
+    ).catch((err) => {
+      Alert.alert("Login Error", "Invalid Email");
+      console.log(err);
 
-    // }
+    }
 
-    // )
+    )
   }
 
   return (
